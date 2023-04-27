@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const quizRouter = require("./src/controllers/quizzes");
-const questionRouter = require("./src/controllers/questions");
-const authRouter = require("./src/controllers/auth");
-const choiceRouter = require("./src/controllers/choices");
+const quizzesCtrl = require("./src/controllers/quizzes");
+const questionCtrl = require("./src/controllers/questions");
+const authCtrl = require("./src/controllers/auth");
+const choiceCtrl = require("./src/controllers/choices");
 var session = require("express-session");
 app.use(
   session({
@@ -35,9 +35,9 @@ app.get("/", (req, res) => {
   res.render("home/home");
 });
 
-app.use("/quizzes", quizRouter);
-app.use("/questions", questionRouter);
-app.use("/choices", choiceRouter);
-app.use("/auth", authRouter);
+app.use('/quizzes', quizzesCtrl);
+app.use('/questions', questionCtrl);
+app.use('/choices', choiceCtrl);
+app.use('/auth', authCtrl);
 
 app.listen(3000);
